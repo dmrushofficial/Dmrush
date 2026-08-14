@@ -46,10 +46,3 @@ yarn-error.log*
 /admin/.env
 /admin/.env.local
 tsconfig.tsbuildinfo
-
-# learn portal
-/learn/node_modules
-/learn/.next
-/learn/data
-/learn/.env
-/learn/.env.local
