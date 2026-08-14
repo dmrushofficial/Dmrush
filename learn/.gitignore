@@ -36,20 +36,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# local qa screenshots
-/.qa
-
-# admin panel
-/admin/node_modules
-/admin/dist
-/admin/data
-/admin/.env
-/admin/.env.local
-tsconfig.tsbuildinfo
-
-# learn portal
-/learn/node_modules
-/learn/.next
-/learn/data
-/learn/.env
-/learn/.env.local
+# typescript
+*.tsbuildinfo
+next-env.d.ts
