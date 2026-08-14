@@ -4,9 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:admin": "npm run dev --prefix admin",
     "build": "next build",
+    "build:admin": "npm run build --prefix admin",
     "start": "next start",
-    "lint": "eslint"
+    "start:admin": "npm run start --prefix admin",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "typecheck:admin": "npm run lint --prefix admin"
   },
   "dependencies": {
     "next": "16.3.0",

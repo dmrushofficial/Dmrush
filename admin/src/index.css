@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+/*
+  Brand tokens aligned with dmrush.com (agency site):
+  deep green accent, lime signal, cream surfaces.
+*/
+:root {
+  --ink: #0a0a0a;
+  --accent-deep: #0d1510;
+  --accent: #1a3324;
+  --accent-hover: #244530;
+  --signal: #84cc16;
+  --signal-hover: #65a30d;
+  --cream: #f7f8f5;
+  --panel: #eef4ea;
+  --panel-light: #e4efe0;
+  --line: #dde3d8;
+  --muted: #5c6670;
+  --surface: #ffffff;
+  --on-accent: #ffffff;
+}
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Remap Tailwind blue → brand greens so existing blue-* classes match the site */
+  --color-blue-50: #f4f8f0;
+  --color-blue-100: #eef4ea;
+  --color-blue-200: #d7e6cc;
+  --color-blue-300: #b5d49a;
+  --color-blue-400: #84cc16;
+  --color-blue-500: #65a30d;
+  --color-blue-600: #1a3324;
+  --color-blue-700: #14301f;
+  --color-blue-800: #0d1510;
+  --color-blue-900: #0a120d;
+  --color-blue-950: #07100b;
+
+  /* Soften slate neutrals toward cream/green-gray */
+  --color-slate-50: #f7f8f5;
+  --color-slate-100: #eef4ea;
+  --color-slate-200: #dde3d8;
+  --color-slate-300: #c5cebf;
+  --color-slate-400: #8a9488;
+  --color-slate-500: #5c6670;
+  --color-slate-600: #4a5560;
+  --color-slate-700: #2f3b34;
+  --color-slate-800: #1a3324;
+  --color-slate-900: #0d1510;
+  --color-slate-950: #0a120d;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--panel);
+}
+::-webkit-scrollbar-thumb {
+  background: #b8c4b0;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8a9488;
+}
+
+/* Receipt printing media configurations */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12px;
+  }
+  #portal-app-root, .no-print {
+    display: none !important;
+  }
+  .print-only, .print-only-container {
+    display: block !important;
+  }
+  .printable-receipt {
+    display: block !important;
+    width: 80mm;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+  }
+}
