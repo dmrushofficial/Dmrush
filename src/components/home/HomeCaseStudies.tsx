@@ -28,8 +28,8 @@ export function HomeCaseStudies() {
             <p className="mx-auto max-w-xl text-base leading-7 text-muted">{copy.empty}</p>
           </div>
         ) : (
-          <div className="mt-10 grid gap-8 md:grid-cols-2">
-            {caseStudies.slice(0, 4).map((study) => (
+          <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {caseStudies.map((study) => (
               <CaseStudyCard key={study.slug} study={study} />
             ))}
           </div>

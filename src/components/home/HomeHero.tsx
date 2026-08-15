@@ -23,12 +23,9 @@ export function HomeHero() {
             ))}
           </h1>
           <p className="mt-5 max-w-md text-base leading-7 text-muted">{hero.body}</p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-7">
             <Button href={hero.primaryCta.href} variant="signal" size="lg">
               {hero.primaryCta.label} →
-            </Button>
-            <Button href={hero.secondaryCta.href} variant="darkOutline" size="lg">
-              {hero.secondaryCta.label}
             </Button>
           </div>
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2">

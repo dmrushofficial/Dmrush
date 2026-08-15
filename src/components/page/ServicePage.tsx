@@ -40,11 +40,6 @@ type ServicePageProps = {
 
 export function ServicePage({ slug }: ServicePageProps) {
   const service = getService(slug);
-  const crumbs = [
-    { label: "Home", href: "/" },
-    { label: "Services" },
-    { label: service.name },
-  ];
 
   return (
     <>
@@ -69,7 +64,6 @@ export function ServicePage({ slug }: ServicePageProps) {
       <PageHeader
         title={service.title}
         description={service.description}
-        crumbs={crumbs}
       />
       <Section>
         <p className="max-w-2xl text-base leading-7 text-muted">

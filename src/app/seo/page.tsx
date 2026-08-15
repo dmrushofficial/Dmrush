@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
 import { CheckIcon } from "@/components/home/HomeIcons";
-import { Photo } from "@/components/home/Photo";
+import { PageHero } from "@/components/page/PageHero";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { seoPage } from "@/content/seo";
 import { getService, services } from "@/content/services";
@@ -65,34 +65,16 @@ export default function SeoPage() {
         ]}
       />
 
-      <section className="border-b border-line bg-cream tx-arabic">
-        <Container className="grid items-center gap-10 py-14 lg:grid-cols-2 lg:gap-14 lg:py-20">
-          <div>
-            <p className="t-label text-accent">{hero.eyebrow}</p>
-            <h1 className="t-h2 mt-4 text-ink">{hero.title}</h1>
-            <p className="mt-5 max-w-xl text-base leading-7 text-muted md:text-lg">
-              {hero.body}
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href={hero.primaryCta.href} variant="signal" size="lg">
-                {hero.primaryCta.label} →
-              </Button>
-              <Button href={hero.secondaryCta.href} variant="darkOutline" size="lg">
-                {hero.secondaryCta.label}
-              </Button>
-            </div>
-          </div>
-          <div className="overflow-hidden rounded-[1.5rem] border border-line shadow-sm">
-            <Photo
-              src="/images/home/seo-growth.png"
-              alt="Organic SEO growth analytics on a modern workstation"
-              className="aspect-[4/3] w-full"
-              sizes="(min-width: 1024px) 45vw, 100vw"
-              priority
-            />
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        body={hero.body}
+        image={{
+          src: "/images/home/seo-growth.png",
+          alt: "Organic SEO growth analytics on a modern workstation",
+        }}
+        primaryCta={hero.primaryCta}
+      />
 
       <div className="border-b border-line bg-surface">
         <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-6">
@@ -229,12 +211,9 @@ export default function SeoPage() {
               </h2>
               <p className="mt-3 max-w-2xl text-base text-muted">{midCta.body}</p>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div>
               <Button href={midCta.primary.href} variant="signal" size="lg">
                 {midCta.primary.label} →
-              </Button>
-              <Button href={midCta.secondary.href} variant="darkOutline" size="lg">
-                {midCta.secondary.label}
               </Button>
             </div>
           </div>
@@ -275,12 +254,9 @@ export default function SeoPage() {
         <Container className="mx-auto max-w-3xl text-center">
           <h2 className="t-h2 text-ink">{finalCta.title}</h2>
           <p className="t-body mx-auto mt-5 max-w-2xl text-muted">{finalCta.body}</p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-8">
             <Button href={finalCta.primary.href} variant="signal" size="lg">
               {finalCta.primary.label} →
-            </Button>
-            <Button href={finalCta.secondary.href} variant="darkOutline" size="lg">
-              {finalCta.secondary.label}
             </Button>
           </div>
         </Container>

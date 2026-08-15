@@ -330,9 +330,17 @@ export const TeachersView: React.FC = () => {
               <tr key={t.id} className="border-b border-slate-50 align-top">
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1a3324]/10 text-[#1a3324]">
-                      <GraduationCap className="h-4 w-4" />
-                    </div>
+                    {t.photoUrl ? (
+                      <img
+                        src={t.photoUrl}
+                        alt=""
+                        className="h-9 w-9 rounded-lg object-cover object-top"
+                      />
+                    ) : (
+                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1a3324]/10 text-[#1a3324]">
+                        <GraduationCap className="h-4 w-4" />
+                      </div>
+                    )}
                     <div>
                       <p className="font-semibold text-slate-900">{t.name}</p>
                       <p className="text-xs text-slate-400">{t.roleTitle}</p>

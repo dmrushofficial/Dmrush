@@ -7,16 +7,14 @@ type CtaSectionProps = {
   title?: string;
   description?: string;
   primaryLabel?: string;
-  secondaryLabel?: string;
   tone?: "default" | "dark";
   align?: "start" | "center";
 };
 
 export function CtaSection({
   title = "Ready to build a stronger digital presence?",
-  description = "Book a strategy call or request a free website and SEO audit.",
+  description = "Book a strategy call to talk through search, web, and growth.",
   primaryLabel = ctas.primary.label,
-  secondaryLabel = ctas.secondary.label,
   tone = "default",
   align = "start",
 }: CtaSectionProps) {
@@ -55,8 +53,8 @@ export function CtaSection({
         </p>
         <div
           className={cn(
-            "mt-8 flex flex-col gap-3 sm:flex-row",
-            isCentered && "sm:justify-center",
+            "mt-8",
+            isCentered && "flex justify-center",
           )}
         >
           <Button
@@ -65,13 +63,6 @@ export function CtaSection({
             size={isCentered ? "lg" : "md"}
           >
             {primaryLabel}
-          </Button>
-          <Button
-            href={ctas.secondary.href}
-            variant={isDark ? "inverseSecondary" : "secondary"}
-            size={isCentered ? "lg" : "md"}
-          >
-            {secondaryLabel}
           </Button>
         </div>
       </div>

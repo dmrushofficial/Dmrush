@@ -96,12 +96,9 @@ export function MobileNav() {
                 </Link>
               );
             })}
-            <div className="mt-5 flex flex-col gap-3">
+            <div className="mt-5">
               <Button href={ctas.primary.href} variant="signal">
                 {ctas.primary.label}
-              </Button>
-              <Button href={ctas.secondary.href} variant="secondary">
-                {ctas.secondary.label}
               </Button>
             </div>
           </nav>

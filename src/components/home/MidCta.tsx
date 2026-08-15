@@ -17,12 +17,9 @@ export function MidCta() {
             </h2>
             <p className="mt-3 max-w-2xl text-base text-muted">{midCta.body}</p>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div>
             <Button href={midCta.primary.href} variant="signal" size="lg">
               {midCta.primary.label} →
-            </Button>
-            <Button href={midCta.secondary.href} variant="darkOutline" size="lg">
-              {midCta.secondary.label}
             </Button>
           </div>
         </div>

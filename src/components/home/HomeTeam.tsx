@@ -34,8 +34,8 @@ export function HomeTeam() {
             <p className="mx-auto max-w-xl text-base leading-7 text-muted">{copy.empty}</p>
           </div>
         ) : (
-          <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {team.slice(0, 4).map((member) => (
+          <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {team.map((member) => (
               <li
                 key={member.slug}
                 className="overflow-hidden rounded-2xl border border-line bg-cream"

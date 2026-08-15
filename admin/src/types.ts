@@ -180,6 +180,7 @@ export interface Teacher {
   courseIds: string[];
   isActive: boolean;
   createdAt: string;
+  photoUrl?: string;
   /** Last known portal password shown once after create/reset (not re-fetched) */
   lastPortalPassword?: string;
 }

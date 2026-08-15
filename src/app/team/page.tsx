@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { PageHero } from "@/components/page/PageHero";
+import { TeamHeroVisual } from "@/components/page/TeamHeroVisual";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pages } from "@/content/pages";
 import { team } from "@/content/team";
@@ -40,16 +42,14 @@ export default function TeamPage() {
         ]}
       />
 
-      <section className="border-b border-line bg-cream tx-arabic">
-        <Container className="py-14 lg:py-20">
-          <p className="t-label text-accent">Team</p>
-          <h1 className="t-h2 mt-4 max-w-4xl text-ink">The people behind DMrush.</h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-muted md:text-lg">
-            Placeholder profiles for now — replace these with real names, roles, and photos when
-            ready.
-          </p>
-        </Container>
-      </section>
+      <PageHero
+        eyebrow="The team"
+        title="A small team that owns the work."
+        body="Search, marketing, and delivery stay with the people who actually run them. You work with operators — not a long roster of invented specialists."
+        visual={<TeamHeroVisual />}
+        primaryCta={ctas.primary}
+        secondaryCta={{ label: "About DMrush", href: "/about" }}
+      />
 
       <section className="bg-surface py-16 md:py-24">
         <Container>
@@ -96,14 +96,11 @@ export default function TeamPage() {
         <Container className="mx-auto max-w-3xl text-center">
           <h2 className="t-h2 text-ink">Want to work with this team?</h2>
           <p className="t-body mx-auto mt-5 max-w-2xl text-muted">
-            Book a strategy call or request a free website and SEO audit.
+            Book a strategy call to talk through search, web, and growth.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-8">
             <Button href={ctas.primary.href} variant="signal" size="lg">
               {ctas.primary.label} →
-            </Button>
-            <Button href={ctas.secondary.href} variant="darkOutline" size="lg">
-              {ctas.secondary.label}
             </Button>
           </div>
         </Container>

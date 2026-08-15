@@ -7,48 +7,29 @@ export type TeamMember = {
   photo?: string;
 };
 
-/** Placeholder profiles until real team details are provided. */
 export const team: TeamMember[] = [
   {
-    slug: "ayaan-malik",
-    name: "Ayaan Malik",
-    role: "Founder & Growth Strategist",
-    expertise: "Strategy · SEO · Growth systems",
-    bio: "Leads engagement strategy across search, web, and paid channels so priorities stay connected to business outcomes.",
+    slug: "tayyab-hanif",
+    name: "Tayyab Hanif",
+    role: "CEO",
+    expertise: "Leadership · Strategy · Growth",
+    bio: "Leads DMrush and keeps SEO, marketing, and delivery aligned to business outcomes.",
+    photo: "/images/team/tayyab-hanif.png",
   },
   {
-    slug: "sara-khan",
-    name: "Sara Khan",
-    role: "SEO Lead",
-    expertise: "Technical SEO · Content systems",
-    bio: "Owns keyword strategy, technical foundations, and content systems that compound organic visibility over time.",
+    slug: "usman-raza",
+    name: "Usman Raza",
+    role: "SEO Executive",
+    expertise: "SEO · Search · Organic growth",
+    bio: "Runs SEO execution so businesses get found for the searches that matter.",
+    photo: "/images/team/usman-raza.png",
   },
   {
-    slug: "daniel-brooks",
-    name: "Daniel Brooks",
-    role: "Head of Web Development",
-    expertise: "UX · Performance · SEO foundations",
-    bio: "Designs and builds websites that turn search and ad traffic into clear next actions.",
-  },
-  {
-    slug: "maya-patel",
-    name: "Maya Patel",
-    role: "Google Ads Specialist",
-    expertise: "Search campaigns · Conversion tracking",
-    bio: "Builds paid search systems with landing-page alignment and measurement that keep spend accountable.",
-  },
-  {
-    slug: "omar-hassan",
-    name: "Omar Hassan",
-    role: "Digital Marketing Strategist",
-    expertise: "Channel planning · Funnel strategy",
-    bio: "Connects organic, paid, and website work into one growth plan instead of competing silos.",
-  },
-  {
-    slug: "lena-ortiz",
-    name: "Lena Ortiz",
-    role: "Ecommerce Specialist",
-    expertise: "Product UX · Checkout · Technical SEO",
-    bio: "Improves ecommerce experiences from product discovery through checkout with performance and SEO in mind.",
+    slug: "najaf-khan",
+    name: "Najaf Khan",
+    role: "Marketing Executive",
+    expertise: "Marketing · Campaigns · Brand",
+    bio: "Handles marketing work across campaigns, messaging, and channel execution.",
+    photo: "/images/team/najaf-khan.png",
   },
 ];

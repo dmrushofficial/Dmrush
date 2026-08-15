@@ -10,6 +10,13 @@ export function organizationNode(): JsonLdNode {
     name: siteConfig.name,
     url: siteConfig.url,
     email: siteConfig.email,
+    telephone: siteConfig.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Flat # 101 Burj AlGhori Plaza, Faisal Colony",
+      addressLocality: "Pattoki",
+      addressCountry: "PK",
+    },
     description: siteConfig.description,
   };
 }
@@ -88,7 +95,7 @@ export function serviceNode({
     },
     areaServed: {
       "@type": "Country",
-      name: "United States",
+      name: "Pakistan",
     },
     audience: {
       "@type": "Audience",

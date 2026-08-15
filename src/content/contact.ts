@@ -38,7 +38,7 @@ export const contactPage = {
     title: "Direct contact",
     emailLabel: "Email",
     email: siteConfig.email,
-    note: "Phone number, office address, and booking calendar will be added once confirmed.",
+    note: "WhatsApp is the fastest way to reach us. Walk-ins welcome at the Pattoki office.",
     ctas: [ctas.primary, ctas.secondary],
   },
 } as const;

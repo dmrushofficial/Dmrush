@@ -14,7 +14,7 @@ export const pages = {
   team: {
     path: "/team",
     title: "Team",
-    description: "Meet the people behind DMrush — strategy, SEO, development, and paid growth.",
+    description: "Meet the operators behind DMrush — a small in-house team for SEO, marketing, and delivery.",
   },
   contact: {
     path: "/contact",
@@ -26,6 +26,6 @@ export const pages = {
     path: "/case-studies",
     title: "Case Studies",
     description:
-      "DMrush case studies. Verified results will be published here.",
+      "DMrush case studies — local SEO, ecommerce, and service websites. Client branding kept off published snapshots.",
   },
 } as const;

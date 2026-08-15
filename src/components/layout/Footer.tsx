@@ -67,16 +67,21 @@ export function Footer() {
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">Contact</p>
           <ul className="mt-5 space-y-3 text-sm text-ink/70">
-            <li>United States</li>
+            <li>{siteConfig.address}</li>
             <li>
-              <Link href="/contact" className="hover:text-accent">
-                Book a Strategy Call
-              </Link>
+              <a href={siteConfig.whatsappUrl} className="hover:text-accent" target="_blank" rel="noreferrer">
+                WhatsApp {siteConfig.phoneDisplay}
+              </a>
             </li>
             <li>
               <a href={`mailto:${siteConfig.email}`} className="hover:text-accent">
                 {siteConfig.email}
               </a>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-accent">
+                Book a Strategy Call
+              </Link>
             </li>
           </ul>
         </div>

@@ -55,10 +55,12 @@ const INITIAL_DATABASE = {
   courses: [
     { id: "C-101", name: "Global SEO Mastery", duration: "3 Months", totalFee: 30000, description: "Build compounding organic visibility with technical SEO, content systems, and authority.", status: CourseStatus.Active, portalCourseId: "course-global-seo", classesPerWeek: 3, days: "Mon/Wed/Sat", classTime: "12:00–1:30" },
     { id: "C-102", name: "Local SEO Mastery", duration: "3 Months", totalFee: 30000, description: "Win nearby demand with Maps, Google Business Profile, and location-focused pages.", status: CourseStatus.Active, portalCourseId: "course-local-seo", classesPerWeek: 3, days: "Mon/Wed/Sat", classTime: "1:30–3:00" },
-    { id: "C-103", name: "AI Website Building", duration: "1 Month", totalFee: 15000, description: "Design and ship modern websites faster with AI-assisted workflows.", status: CourseStatus.Active, portalCourseId: "course-ai-website", classesPerWeek: 2, days: "Tue/Thu", classTime: "4:30–6:00" },
-    { id: "C-104", name: "AI Tools & Prompt Engineering", duration: "2 Months", totalFee: 20000, description: "Use modern AI tools with structured prompts for marketing and production work.", status: CourseStatus.Active, portalCourseId: "course-ai-tools", classesPerWeek: 3, days: "Tue/Thu/Sun", classTime: "12:00–1:30" },
-    { id: "C-105", name: "Guest Posting & Link Building", duration: "2 Months", totalFee: 25000, description: "Build ethical authority with guest posting systems and link acquisition workflows.", status: CourseStatus.Active, portalCourseId: "course-guest-posting", classesPerWeek: 3, days: "Tue/Thu/Sun", classTime: "1:30–3:00" },
-    { id: "C-106", name: "Shopify & E-commerce", duration: "2 Months", totalFee: 25000, description: "Build and optimize Shopify stores for product clarity, checkout flow, and growth.", status: CourseStatus.Active, portalCourseId: "course-shopify", classesPerWeek: 3, days: "Mon/Wed/Sat", classTime: "3:00–4:30" }
+    { id: "C-103", name: "Shopify & E-Commerce", duration: "2 Months", totalFee: 25000, description: "Build and optimize Shopify stores for product clarity, checkout flow, and growth.", status: CourseStatus.Active, portalCourseId: "course-shopify", classesPerWeek: 3, days: "Mon/Wed/Sat", classTime: "3:00–4:30" },
+    { id: "C-104", name: "WordPress Website Development", duration: "3 Months", totalFee: 30000, description: "Build professional WordPress websites with clean structure, SEO foundations, and conversion focus.", status: CourseStatus.Active, portalCourseId: "course-wordpress", classesPerWeek: 3, days: "Mon/Wed/Sat", classTime: "4:30–6:00" },
+    { id: "C-105", name: "AI Tools & Prompt Engineering", duration: "2 Months", totalFee: 20000, description: "Use modern AI tools with structured prompts for marketing and production work.", status: CourseStatus.Active, portalCourseId: "course-ai-tools", classesPerWeek: 3, days: "Tue/Thu/Sun", classTime: "12:00–1:30" },
+    { id: "C-106", name: "SaaS-Based AI Tools", duration: "1 Month", totalFee: 15000, description: "Apply SaaS AI platforms for research, content, automation, and team workflows.", status: CourseStatus.Active, portalCourseId: "course-saas-ai", classesPerWeek: 3, days: "Tue/Thu/Sun", classTime: "1:30–3:00" },
+    { id: "C-107", name: "Digital Marketing", duration: "2 Months", totalFee: 25000, description: "Plan and run digital marketing across search, social, content, and paid channels.", status: CourseStatus.Active, portalCourseId: "course-digital-marketing", classesPerWeek: 3, days: "Tue/Thu/Sun", classTime: "3:00–4:30" },
+    { id: "C-108", name: "AI Website Building", duration: "1 Month", totalFee: 15000, description: "Design and ship modern websites faster with AI-assisted workflows.", status: CourseStatus.Active, portalCourseId: "course-ai-website", classesPerWeek: 2, days: "Tue/Thu", classTime: "4:30–6:00" }
   ] as Course[],
   batches: [
     { id: "B-101", courseId: "C-101", name: "GSEO-MWS-1200", startDate: "2026-08-01", endDate: "2026-11-01", capacity: 25, status: BatchStatus.Active },
@@ -238,7 +240,41 @@ const INITIAL_DATABASE = {
     timezone: "PKT (UTC+5)",
     receiptNote: "Thank you for choosing DM Rush. Please note that fees once paid are non-refundable and non-transferable."
   } as Settings,
-  teachers: [] as Teacher[],
+  teachers: [
+    {
+      id: "TCH-NAJAF",
+      name: "Najaf Khan",
+      email: "najaf.khan@dmrush.com",
+      phone: "",
+      roleTitle: "SEO & Digital Marketing Instructor",
+      courseIds: ["C-101", "C-102", "C-107"],
+      isActive: true,
+      createdAt: "2026-08-15T00:00:00.000Z",
+      photoUrl: "/instructors/najaf-khan.png",
+    },
+    {
+      id: "TCH-USMAN",
+      name: "Usman Raza",
+      email: "usman.raza@dmrush.com",
+      phone: "",
+      roleTitle: "Web & Ecommerce Instructor",
+      courseIds: ["C-103", "C-104", "C-108"],
+      isActive: true,
+      createdAt: "2026-08-15T00:00:00.000Z",
+      photoUrl: "/instructors/usman-raza.png",
+    },
+    {
+      id: "TCH-TAYYAB",
+      name: "Tayyab Hanif",
+      email: "tayyab.hanif@dmrush.com",
+      phone: "",
+      roleTitle: "AI Tools Instructor",
+      courseIds: ["C-105", "C-106"],
+      isActive: true,
+      createdAt: "2026-08-15T00:00:00.000Z",
+      photoUrl: "/instructors/tayyab-hanif.png",
+    },
+  ] as Teacher[],
 };
 
 // Database utility helpers

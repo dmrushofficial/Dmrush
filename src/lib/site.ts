@@ -7,6 +7,10 @@ export const siteConfig = {
   description:
     "DMrush is a digital growth agency helping businesses get found, get chosen, and grow through SEO, web development, ecommerce, and paid acquisition.",
   email: "support@dmrush.com",
+  phone: "+923017786667",
+  phoneDisplay: "+92 301 7786667",
+  whatsappUrl: "https://wa.me/923017786667",
+  address: "Flat # 101 Burj AlGhori Plaza, Faisal Colony Pattoki",
 } as const;
 
 export const ctas = {

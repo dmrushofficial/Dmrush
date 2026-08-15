@@ -10,12 +10,9 @@ export function FinalCta() {
       <Container className="mx-auto max-w-3xl text-center">
         <h2 className="t-h2">{finalCta.title}</h2>
         <p className="t-body mx-auto mt-5 max-w-2xl text-muted">{finalCta.body}</p>
-        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-8">
           <Button href={finalCta.primary.href} variant="signal" size="lg">
             {finalCta.primary.label} →
-          </Button>
-          <Button href={finalCta.secondary.href} variant="darkOutline" size="lg">
-            {finalCta.secondary.label}
           </Button>
         </div>
       </Container>

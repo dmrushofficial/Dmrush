@@ -51,7 +51,7 @@ export function Button({
   const classes = cn(baseClassName, sizes[size], variants[variant], className);
 
   if (href) {
-    const isExternal = href.startsWith("http");
+    const isExternal = href.startsWith("http") || href.startsWith("#");
 
     if (isExternal) {
       return (

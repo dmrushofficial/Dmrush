@@ -2,6 +2,7 @@ import type { Route } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { PageHero } from "@/components/page/PageHero";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { aboutPage } from "@/content/about";
 import { services } from "@/content/services";
@@ -33,23 +34,17 @@ export default function AboutPage() {
         ]}
       />
 
-      <section className="border-b border-line bg-cream tx-arabic">
-        <Container className="py-14 lg:py-20">
-          <p className="t-label text-accent">{hero.eyebrow}</p>
-          <h1 className="t-h2 mt-4 max-w-4xl text-ink">{hero.title}</h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-muted md:text-lg">
-            {hero.body}
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button href={finalCta.primary.href} variant="signal" size="lg">
-              {finalCta.primary.label} →
-            </Button>
-            <Button href="/team" variant="darkOutline" size="lg">
-              Meet the team
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        body={hero.body}
+        image={{
+          src: "/images/home/strategy.png",
+          alt: "DMrush strategy workspace connecting search, web, and growth planning",
+        }}
+        primaryCta={finalCta.primary}
+        secondaryCta={{ label: "Meet the team", href: "/team" }}
+      />
 
       <section className="bg-surface py-16 md:py-24">
         <Container>
@@ -141,12 +136,9 @@ export default function AboutPage() {
         <Container className="mx-auto max-w-3xl text-center">
           <h2 className="t-h2 text-ink">{finalCta.title}</h2>
           <p className="t-body mx-auto mt-5 max-w-2xl text-muted">{finalCta.body}</p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-8">
             <Button href={finalCta.primary.href} variant="signal" size="lg">
               {finalCta.primary.label} →
-            </Button>
-            <Button href={finalCta.secondary.href} variant="darkOutline" size="lg">
-              {finalCta.secondary.label}
             </Button>
           </div>
         </Container>

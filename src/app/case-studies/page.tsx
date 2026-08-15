@@ -1,12 +1,13 @@
 import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
 import { CtaSection } from "@/components/ui/CtaSection";
-import { PageHeader } from "@/components/ui/PageHeader";
+import { PageHero } from "@/components/page/PageHero";
 import { Section } from "@/components/ui/Section";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { caseStudies } from "@/content/case-studies";
 import { pages } from "@/content/pages";
 import { createPageMetadata } from "@/lib/metadata";
 import { breadcrumbNode, webPageNode } from "@/lib/schema";
+import { ctas } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: pages.caseStudies.title,
@@ -30,28 +31,22 @@ export default function CaseStudiesPage() {
           ]),
         ]}
       />
-      <PageHeader
-        title={pages.caseStudies.title}
-        description={pages.caseStudies.description}
-        crumbs={[
-          { label: "Home", href: "/" },
-          { label: "Case Studies" },
-        ]}
+      <PageHero
+        eyebrow="Case Studies"
+        title="Work that connects visibility to growth."
+        body="Three recent projects — local search, ecommerce catalog, and a service website. Client branding is kept off the snapshots."
+        image={{
+          src: "/images/case-studies/local-clinic.jpg",
+          alt: "Phone on a desk showing a local clinic Maps listing",
+        }}
+        primaryCta={ctas.primary}
       />
       <Section>
-        {caseStudies.length === 0 ? (
-          <p className="max-w-2xl text-base leading-7 text-muted">
-            Verified case studies will be published here. No results,
-            revenue figures, or client names have been invented for this
-            foundation.
-          </p>
-        ) : (
-          <div className="grid gap-10 md:grid-cols-2">
-            {caseStudies.map((study) => (
-              <CaseStudyCard key={study.slug} study={study} />
-            ))}
-          </div>
-        )}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {caseStudies.map((study) => (
+            <CaseStudyCard key={study.slug} study={study} />
+          ))}
+        </div>
       </Section>
       <CtaSection />
     </>

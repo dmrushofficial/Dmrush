@@ -125,8 +125,8 @@ export function ContactForm() {
       </div>
       {submitted ? (
         <p className="mt-4 text-sm leading-6 text-muted" role="status">
-          Thanks — this form is not connected to a backend yet. Contact routing will be
-          added once intake details are confirmed. Meanwhile, email {siteConfig.email}.
+          Thanks — this form is not connected to a backend yet. Meanwhile WhatsApp{" "}
+          {siteConfig.phoneDisplay} or email {siteConfig.email}.
         </p>
       ) : null}
     </form>
