@@ -11,6 +11,12 @@ export const siteConfig = {
   phoneDisplay: "+92 301 7786667",
   whatsappUrl: "https://wa.me/923017786667",
   address: "Flat # 101 Burj AlGhori Plaza, Faisal Colony Pattoki",
+  social: [
+    { id: "instagram", label: "Instagram", href: "https://www.instagram.com/dmrushofficial/" },
+    { id: "youtube", label: "YouTube", href: "https://www.youtube.com/@DMRushofficial" },
+    { id: "facebook", label: "Facebook", href: "https://www.facebook.com/dmrushofficial/" },
+    { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/dm-rush-institute" },
+  ],
 } as const;
 
 export const ctas = {

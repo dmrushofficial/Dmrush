@@ -40,11 +40,6 @@ export const footerNav = {
     { label: "Team", href: "/team" },
     { label: "Case Studies", href: "/case-studies" },
     { label: "Contact", href: "/contact" },
-  ] satisfies NavLink[],
-  resources: [
-    { label: "Case Studies", href: "/case-studies" },
-  ] satisfies NavLink[],
-  learn: [
     { label: "DMrush Learn", href: siteConfig.learnUrl, external: true },
   ] satisfies NavLink[],
 };

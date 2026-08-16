@@ -18,6 +18,7 @@ export function organizationNode(): JsonLdNode {
       addressCountry: "PK",
     },
     description: siteConfig.description,
+    sameAs: siteConfig.social.map((item) => item.href),
   };
 }
 

@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/layout/Logo";
 import { footerNav } from "@/content/navigation";
 import { siteConfig } from "@/lib/site";
+import { SocialIcon } from "@/components/ui/SocialIcons";
 
 function FooterList({
   title,
@@ -42,28 +43,29 @@ export function Footer() {
 
   return (
     <footer className="border-t border-line bg-cream text-ink">
-      <Container className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-6">
-        <div className="sm:col-span-2">
+      <Container className="grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
           <Logo />
-          <p className="mt-5 max-w-xs text-sm leading-7 text-muted">
+          <p className="mt-5 max-w-[16rem] text-sm leading-7 text-muted">
             {siteConfig.tagline}
           </p>
-          <div className="mt-6 flex gap-2.5">
-            {["Fb", "X", "Ig", "In", "Yt"].map((label) => (
-              <span
-                key={label}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-[10px] font-bold text-muted"
-                aria-hidden="true"
+          <div className="mt-5 flex gap-2">
+            {siteConfig.social.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={item.label}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink/70 transition-colors hover:border-accent hover:text-accent"
               >
-                {label}
-              </span>
+                <SocialIcon name={item.id} className="h-[18px] w-[18px]" />
+              </a>
             ))}
           </div>
         </div>
         <FooterList title="Services" items={footerNav.services} />
         <FooterList title="Company" items={footerNav.company} />
-        <FooterList title="Resources" items={footerNav.resources} />
-        <FooterList title="Learn" items={footerNav.learn} />
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">Contact</p>
           <ul className="mt-5 space-y-3 text-sm text-ink/70">
