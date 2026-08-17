@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/page/PageHero";
 import { TeamHeroVisual } from "@/components/page/TeamHeroVisual";
+import { TeamSocialLinks } from "@/components/page/TeamSocialLinks";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pages } from "@/content/pages";
 import { team } from "@/content/team";
@@ -85,6 +86,7 @@ export default function TeamPage() {
                   {member.bio ? (
                     <p className="mt-3 text-sm leading-6 text-muted">{member.bio}</p>
                   ) : null}
+                  <TeamSocialLinks social={member.social} />
                 </div>
               </li>
             ))}

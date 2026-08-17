@@ -1,3 +1,9 @@
+export type TeamMemberSocial = {
+  id: "linkedin" | "instagram" | "youtube" | "facebook";
+  href: string;
+  label: string;
+};
+
 export type TeamMember = {
   slug: string;
   name: string;
@@ -5,6 +11,7 @@ export type TeamMember = {
   expertise?: string;
   bio?: string;
   photo?: string;
+  social?: TeamMemberSocial[];
 };
 
 export const team: TeamMember[] = [
@@ -15,6 +22,13 @@ export const team: TeamMember[] = [
     expertise: "Leadership · Strategy · Growth",
     bio: "Leads DMrush and keeps SEO, marketing, and delivery aligned to business outcomes.",
     photo: "/images/team/tayyab-hanif.png",
+    social: [
+      {
+        id: "linkedin",
+        href: "https://www.linkedin.com/in/muhammad-tayyab-b4a08125b",
+        label: "Tayyab Hanif on LinkedIn",
+      },
+    ],
   },
   {
     slug: "usman-raza",
@@ -23,6 +37,13 @@ export const team: TeamMember[] = [
     expertise: "SEO · Search · Organic growth",
     bio: "Runs SEO execution so businesses get found for the searches that matter.",
     photo: "/images/team/usman-raza.png",
+    social: [
+      {
+        id: "linkedin",
+        href: "https://www.linkedin.com/in/usman-fadi-970588253",
+        label: "Usman Raza on LinkedIn",
+      },
+    ],
   },
   {
     slug: "najaf-khan",

@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pages } from "@/content/pages";
 import { createPageMetadata } from "@/lib/metadata";
@@ -66,6 +67,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );

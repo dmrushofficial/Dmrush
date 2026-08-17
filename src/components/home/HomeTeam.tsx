@@ -2,6 +2,7 @@ import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { TeamSocialLinks } from "@/components/page/TeamSocialLinks";
 import { team } from "@/content/team";
 import { homeCopy } from "@/content/home";
 
@@ -61,6 +62,7 @@ export function HomeTeam() {
                   {member.expertise ? (
                     <p className="mt-2 text-sm text-muted">{member.expertise}</p>
                   ) : null}
+                  <TeamSocialLinks social={member.social} />
                 </div>
               </li>
             ))}

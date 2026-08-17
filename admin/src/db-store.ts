@@ -79,6 +79,35 @@ export async function flushDb(): Promise<void> {
   await writeChain;
 }
 
+function teacherAssignmentsMatch(a: Teacher[], b: Teacher[]): boolean {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
+
+/** Canonical instructor → course mapping (Aug 2026). */
+function applyTeacherAssignments(db: AdminDatabase): AdminDatabase {
+  const patches: Record<string, Pick<Teacher, "roleTitle" | "courseIds">> = {
+    "TCH-NAJAF": {
+      roleTitle: "SEO, Marketing & Web Instructor",
+      courseIds: ["C-101", "C-103", "C-104", "C-107"],
+    },
+    "TCH-USMAN": {
+      roleTitle: "AI & Local SEO Instructor",
+      courseIds: ["C-102", "C-105", "C-106", "C-108"],
+    },
+    "TCH-TAYYAB": {
+      roleTitle: "AI Tools Instructor",
+      courseIds: [],
+    },
+  };
+
+  return {
+    ...db,
+    teachers: db.teachers.map((teacher) =>
+      patches[teacher.id] ? { ...teacher, ...patches[teacher.id] } : teacher,
+    ),
+  };
+}
+
 function normalize(db: AdminDatabase, seed: AdminDatabase): AdminDatabase {
   const next: AdminDatabase = {
     users: Array.isArray(db.users) ? db.users : seed.users,
@@ -123,8 +152,15 @@ export async function initDb(seed: AdminDatabase, jsonFile: string): Promise<voi
   );
 
   if (existing.rows[0]?.payload) {
-    cache = normalize(existing.rows[0].payload, seed);
-    console.log("Admin data store: Neon PostgreSQL (existing)");
+    const normalized = normalize(existing.rows[0].payload, seed);
+    const migrated = applyTeacherAssignments(normalized);
+    cache = migrated;
+    if (!teacherAssignmentsMatch(normalized.teachers, migrated.teachers)) {
+      await persist();
+      console.log("Admin data store: Neon PostgreSQL (migrated teacher assignments)");
+    } else {
+      console.log("Admin data store: Neon PostgreSQL (existing)");
+    }
     return;
   }
 
