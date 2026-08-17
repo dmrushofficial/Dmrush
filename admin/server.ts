@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import cookieParser from "cookie-parser";
 import path from "path";
@@ -27,6 +28,7 @@ import {
   deleteTeacherPortal,
   resetTeacherPortalPassword,
 } from "./src/portal-sync.js";
+import { initDb, readDB, writeDB, type AdminDatabase } from "./src/db-store.js";
 
 const app = express();
 const PORT = Number(process.env.ADMIN_PORT || process.env.PORT || 3005);
@@ -72,163 +74,16 @@ const INITIAL_DATABASE = {
     { id: "B-107", courseId: "C-107", name: "DMKT-TTS-1500", startDate: "2026-08-01", endDate: "2026-10-01", capacity: 25, status: BatchStatus.Active },
     { id: "B-108", courseId: "C-108", name: "AIWEB-TT-1630", startDate: "2026-08-01", endDate: "2026-09-01", capacity: 20, status: BatchStatus.Active }
   ] as Batch[],
-  students: [
-    {
-      id: "DM-2026-001",
-      name: "Hamza Ahmed",
-      fatherName: "Muhammad Ahmed",
-      cnic: "42101-1234567-1",
-      phone: "0300-1234567",
-      email: "hamza@example.com",
-      admissionDate: "2026-01-10",
-      courseId: "C-101",
-      batchId: "B-101",
-      shift: Shift.Morning,
-      startDate: "2026-01-10",
-      endDate: "2026-07-10",
-      duration: "6 Months",
-      status: StudentStatus.Active,
-      notes: "Bright student, paying on time in installments.",
-      totalFee: 45000,
-      discount: 3000,
-      paidAmount: 30000,
-      pendingAmount: 12000,
-      dueDate: "2026-07-25",
-      nextInstallmentDate: "2026-07-25"
-    },
-    {
-      id: "DM-2026-002",
-      name: "Ayesha Khan",
-      fatherName: "Sajid Khan",
-      cnic: "42101-7654321-2",
-      phone: "0311-9876543",
-      email: "ayesha.k@example.com",
-      admissionDate: "2026-02-15",
-      courseId: "C-102",
-      batchId: "B-103",
-      shift: Shift.Evening,
-      startDate: "2026-02-15",
-      endDate: "2026-05-15",
-      duration: "3 Months",
-      status: StudentStatus.Completed,
-      notes: "Completed course with outstanding grades and projects.",
-      totalFee: 25000,
-      discount: 0,
-      paidAmount: 25000,
-      pendingAmount: 0,
-      dueDate: "2026-05-15",
-      nextInstallmentDate: ""
-    },
-    {
-      id: "DM-2026-003",
-      name: "Zain Ali",
-      fatherName: "Amjad Ali",
-      cnic: "42201-4455667-3",
-      phone: "0321-1122334",
-      email: "zain.ali@example.com",
-      admissionDate: "2026-01-12",
-      courseId: "C-101",
-      batchId: "B-101",
-      shift: Shift.Weekend,
-      startDate: "2026-01-10",
-      endDate: "2026-07-10",
-      duration: "6 Months",
-      status: StudentStatus.Active,
-      notes: "Requires backup classes occasionally due to work commitments.",
-      totalFee: 45000,
-      discount: 5000,
-      paidAmount: 40000,
-      pendingAmount: 0,
-      dueDate: "2026-06-10",
-      nextInstallmentDate: ""
-    },
-    {
-      id: "DM-2026-004",
-      name: "Fatima Raza",
-      fatherName: "Syed Raza",
-      cnic: "42301-8899001-4",
-      phone: "0333-5556677",
-      email: "fatima.r@example.com",
-      admissionDate: "2026-05-01",
-      courseId: "C-103",
-      batchId: "B-104",
-      shift: Shift.Morning,
-      startDate: "2026-05-01",
-      endDate: "2026-09-01",
-      duration: "4 Months",
-      status: StudentStatus.Active,
-      notes: "Wants weekly updates. Installment payment due date requested extensions.",
-      totalFee: 35000,
-      discount: 2000,
-      paidAmount: 15000,
-      pendingAmount: 18000,
-      dueDate: "2026-07-10",
-      nextInstallmentDate: "2026-07-10"
-    },
-    {
-      id: "DM-2026-005",
-      name: "Bilal Siddiqui",
-      fatherName: "Anwar Siddiqui",
-      cnic: "42101-5566778-5",
-      phone: "0345-4433221",
-      email: "bilal.s@example.com",
-      admissionDate: "2026-07-02",
-      courseId: "C-104",
-      batchId: "B-105",
-      shift: Shift.Evening,
-      startDate: "2026-07-01",
-      endDate: "2026-10-01",
-      duration: "3 Months",
-      status: StudentStatus.Active,
-      notes: "Admitted via Instagram Lead campaign.",
-      totalFee: 20000,
-      discount: 1000,
-      paidAmount: 19000,
-      pendingAmount: 0,
-      dueDate: "2026-07-02",
-      nextInstallmentDate: ""
-    },
-    {
-      id: "DM-2026-006",
-      name: "Kiran Shah",
-      fatherName: "Asif Shah",
-      cnic: "42101-2233445-6",
-      phone: "0301-7788990",
-      email: "kiran@example.com",
-      admissionDate: "2026-02-15",
-      courseId: "C-102",
-      batchId: "B-103",
-      shift: Shift.Evening,
-      startDate: "2026-02-15",
-      endDate: "2026-05-15",
-      status: StudentStatus.Dropped,
-      notes: "Dropped due to family relocation to Islamabad.",
-      totalFee: 25000,
-      discount: 0,
-      paidAmount: 10000,
-      pendingAmount: 15000,
-      dueDate: "2026-03-15",
-      nextInstallmentDate: ""
-    }
-  ] as Student[],
+  students: [] as Student[],
   inquiries: [
     { id: "L-101", name: "Usman Ghani", phone: "0300-8889991", email: "usman.g@example.com", interestedCourseId: "C-101", source: LeadSource.Facebook, notes: "Inquired about full stack batch installments. Follow up scheduled.", followUpDate: "2026-07-22", status: LeadStatus.Interested, createdAt: "2026-07-15T10:30:00Z" },
     { id: "L-102", name: "Sana Malik", phone: "0312-3334442", email: "sana.m@example.com", interestedCourseId: "C-102", source: LeadSource.WalkIn, notes: "Visited campus physically. Requested a tour and layout plan.", followUpDate: "2026-07-23", status: LeadStatus.FollowUp, createdAt: "2026-07-18T14:15:00Z" },
     { id: "L-103", name: "Asad Mahmood", phone: "0321-7778883", email: "asad.m@example.com", interestedCourseId: "C-103", source: LeadSource.Website, notes: "Submitted online query form for iOS/Android app course.", followUpDate: "2026-07-24", status: LeadStatus.New, createdAt: "2026-07-20T08:00:00Z" },
     { id: "L-104", name: "Zoya Butt", phone: "0333-1112224", email: "zoya@example.com", interestedCourseId: "C-104", source: LeadSource.Instagram, notes: "Shared digital marketing brochure on whatsapp.", followUpDate: "2026-07-19", status: LeadStatus.Contacted, createdAt: "2026-07-10T12:00:00Z" }
   ] as Inquiry[],
-  payments: [
-    { id: "RCP-10001", studentId: "DM-2026-001", studentName: "Hamza Ahmed", courseName: "Full Stack Web Development", batchName: "FSWD-2026-BatchA", amountPaid: 15000, previousBalance: 42000, remainingBalance: 27000, paymentMethod: PaymentMethod.Cash, paymentDate: "2026-01-10", paymentTime: "11:30 AM", accountantName: "Accountant User", notes: "Admission & Registration Fee" },
-    { id: "RCP-10002", studentId: "DM-2026-001", studentName: "Hamza Ahmed", courseName: "Full Stack Web Development", batchName: "FSWD-2026-BatchA", amountPaid: 15000, previousBalance: 27000, remainingBalance: 12000, paymentMethod: PaymentMethod.BankTransfer, paymentDate: "2026-04-12", paymentTime: "02:15 PM", accountantName: "Accountant User", notes: "Second Installment payment" },
-    { id: "RCP-10003", studentId: "DM-2026-002", studentName: "Ayesha Khan", courseName: "UI/UX Graphic Design", batchName: "UIUX-2026-BatchA", amountPaid: 25000, previousBalance: 25000, remainingBalance: 0, paymentMethod: PaymentMethod.JazzCash, paymentDate: "2026-02-15", paymentTime: "04:45 PM", accountantName: "Accountant User", notes: "Full Lumsum Payment with Admission" },
-    { id: "RCP-10004", studentId: "DM-2026-003", studentName: "Zain Ali", courseName: "Full Stack Web Development", batchName: "FSWD-2026-BatchA", amountPaid: 40000, previousBalance: 40000, remainingBalance: 0, paymentMethod: PaymentMethod.EasyPaisa, paymentDate: "2026-01-12", paymentTime: "01:00 PM", accountantName: "Accountant User", notes: "Complete payment after discounted total" },
-    { id: "RCP-10005", studentId: "DM-2026-004", studentName: "Fatima Raza", courseName: "Mobile App Development", batchName: "ANDR-2026-BatchA", amountPaid: 15000, previousBalance: 33000, remainingBalance: 18000, paymentMethod: PaymentMethod.Cash, paymentDate: "2026-05-01", paymentTime: "10:00 AM", accountantName: "Accountant User", notes: "Down payment of mobile admission" },
-    { id: "RCP-10006", studentId: "DM-2026-005", studentName: "Bilal Siddiqui", courseName: "Digital Marketing & SEO", batchName: "DMKT-2026-BatchA", amountPaid: 19000, previousBalance: 19000, remainingBalance: 0, paymentMethod: PaymentMethod.BankTransfer, paymentDate: "2026-07-02", paymentTime: "03:20 PM", accountantName: "Accountant User", notes: "Full course fee received" }
-  ] as Payment[],
+  payments: [] as Payment[],
   logs: [
-    { id: "LOG-1", user: "Admin User", role: UserRole.Admin, action: "System Initialized", details: "Database booted up with high-fidelity dummy data sets.", date: "2026-07-21", time: "01:00 AM", ipAddress: "127.0.0.1" },
-    { id: "LOG-2", user: "Admin User", role: UserRole.Admin, action: "Student Admitted", details: "Admitted Hamza Ahmed into Full Stack Web Development.", date: "2026-01-10", time: "11:30 AM", ipAddress: "127.0.0.1" },
-    { id: "LOG-3", user: "Accountant User", role: UserRole.Accountant, action: "Payment Received", details: "Generated RCP-10001 for Hamza Ahmed. Received PKR 15,000 Cash.", date: "2026-01-10", time: "11:35 AM", ipAddress: "192.168.1.15" }
+    { id: "LOG-1", user: "Admin User", role: UserRole.Admin, action: "System Initialized", details: "Database booted with courses, batches, and instructors.", date: "2026-07-21", time: "01:00 AM", ipAddress: "127.0.0.1" },
   ] as ActivityLog[],
   settings: {
     instituteName: "DM Rush Institute",
@@ -275,52 +130,7 @@ const INITIAL_DATABASE = {
       photoUrl: "/instructors/tayyab-hanif.png",
     },
   ] as Teacher[],
-};
-
-// Database utility helpers
-function readDB(): typeof INITIAL_DATABASE {
-  if (!fs.existsSync(DB_FILE)) {
-    writeDB(INITIAL_DATABASE);
-    return INITIAL_DATABASE;
-  }
-  try {
-    const raw = fs.readFileSync(DB_FILE, "utf-8");
-    const db = JSON.parse(raw);
-    
-    // Auto-migrate missing passwords for users
-    let modified = false;
-    if (db && Array.isArray(db.users)) {
-      db.users = db.users.map((u: any) => {
-        if (!u.password) {
-          modified = true;
-          return {
-            ...u,
-            password: u.role === UserRole.Admin ? "admin" : "accountant"
-          };
-        }
-        return u;
-      });
-    }
-
-    if (!db.teachers || !Array.isArray(db.teachers)) {
-      db.teachers = [];
-      modified = true;
-    }
-    
-    if (modified) {
-      fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2), "utf-8");
-    }
-    return db;
-  } catch (err) {
-    console.error("Failed to read database, resetting to initial state", err);
-    writeDB(INITIAL_DATABASE);
-    return INITIAL_DATABASE;
-  }
-}
-
-function writeDB(data: typeof INITIAL_DATABASE) {
-  fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), "utf-8");
-}
+} satisfies AdminDatabase;
 
 function addLog(action: string, details: string, user = "Admin User", role = UserRole.Admin) {
   const db = readDB();
@@ -1107,6 +917,8 @@ app.post("/admin/api/backups/restore", requireAdmin, (req, res) => {
 
 // Integrate with Vite / Production serving under /admin
 const startServer = async () => {
+  await initDb(INITIAL_DATABASE, DB_FILE);
+
   // HTML document gate: unauthenticated browsers hitting protected /admin pages go to login.
   // Static assets and /admin/api are not redirected here.
   app.use((req, res, next) => {

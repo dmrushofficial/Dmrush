@@ -30,10 +30,6 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  icons: {
-    icon: "/images/brand/dmrush-logo.png",
-    apple: "/images/brand/dmrush-logo.png",
-  },
   alternates: homeMetadata.alternates,
   openGraph: {
     ...homeMetadata.openGraph,
