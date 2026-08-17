@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:admin": "npm run dev --prefix admin",
-    "build": "next build",
+    "build": "npm run build --prefix admin && next build",
     "build:admin": "npm run build --prefix admin",
     "start": "next start",
     "start:admin": "npm run start --prefix admin",
@@ -15,12 +15,14 @@
   },
   "dependencies": {
     "next": "16.3.0",
+    "pg": "^8.23.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "^8.21.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

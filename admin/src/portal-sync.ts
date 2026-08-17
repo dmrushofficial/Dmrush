@@ -1,4 +1,4 @@
-import type { Course, Student } from "./types.js";
+import type { Course, Student } from "./types";
 
 export type PortalProvisionResult =
   | {
