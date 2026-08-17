@@ -3,8 +3,7 @@ import { Printer, X, ShieldCheck, Landmark, CreditCard, Receipt, Signature, Down
 import { Student, Course, Batch } from "../types.js";
 import { useApp } from "../context/AppContext.js";
 import { DMRushLogo } from "./DMRushLogo.js";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+import { exportElementToA4Pdf } from "../lib/exportPdf.js";
 
 interface StudentFeesSlipProps {
   student: Student;
@@ -28,67 +27,8 @@ export const StudentFeesSlip: React.FC<StudentFeesSlipProps> = ({ student, onClo
     if (!printRef.current) return;
     setIsGenerating(true);
     try {
-      const element = printRef.current;
-      
-      // Render canvas with double device pixel ratio for super crisp text and borders
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        backgroundColor: "#ffffff",
-        onclone: (clonedDoc) => {
-          // 1. Remove or rewrite oklch and oklab from all styles inside cloned document style tags
-          const styles = clonedDoc.querySelectorAll('style');
-          styles.forEach(styleTag => {
-            if (styleTag.textContent) {
-              let content = styleTag.textContent;
-              // Clean any oklch(...) and oklab(...) functions
-              content = content.replace(/oklch\([^)]+\)/g, '#1e293b');
-              content = content.replace(/oklab\([^)]+\)/g, '#1e293b');
-              styleTag.textContent = content;
-            }
-          });
-
-          // 2. Remove cross-origin or local style sheet rules that contain unsupported oklch/oklab functions
-          try {
-            for (const sheet of Array.from(clonedDoc.styleSheets)) {
-              try {
-                const rules = Array.from(sheet.cssRules || []);
-                for (let i = rules.length - 1; i >= 0; i--) {
-                  const rule = rules[i];
-                  if (rule.cssText.includes("oklch") || rule.cssText.includes("oklab")) {
-                    sheet.deleteRule(i);
-                  }
-                }
-              } catch (e) {
-                // If we can't access rules, it is likely cross-origin. Disable to prevent crash.
-                try {
-                  sheet.disabled = true;
-                } catch (err) {
-                  // Ignore
-                }
-              }
-            }
-          } catch (e) {
-            console.warn("Could not sanitize stylesheet rules:", e);
-          }
-        }
-      });
-      
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4"
-      });
-      
-      const imgWidth = 210; // A4 width in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, undefined, 'FAST');
-      
-      const cleanName = student.name.replace(/[^a-z0-9]/gi, '_').toLowerCase();
-      pdf.save(`fee_slip_${cleanName || "student"}.pdf`);
+      const cleanName = student.name.replace(/[^a-z0-9]/gi, "_").toLowerCase();
+      await exportElementToA4Pdf(printRef.current, `fee_slip_${cleanName || "student"}.pdf`);
     } catch (error) {
       console.error("Failed to generate PDF document:", error);
       alert("Failed to build download package. Please try using the Browser Print alternative.");
@@ -156,6 +96,7 @@ export const StudentFeesSlip: React.FC<StudentFeesSlipProps> = ({ student, onClo
             {/* The printable document visual preview on screen */}
             <div 
               ref={printRef}
+              data-pdf-root
               className="printable-card-pdf bg-white w-[210mm] max-w-full min-h-[297mm] p-12 border border-slate-300 rounded-lg shadow-lg relative text-slate-800 font-sans"
             >
               <style>{`

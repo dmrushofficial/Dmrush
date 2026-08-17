@@ -20,20 +20,14 @@ export const DMRushLogo: React.FC<DMRushLogoProps> = ({
 
   return (
     <div className={`inline-flex items-center gap-3 shrink-0 ${className}`}>
-      <div
-        className={`inline-flex items-center justify-center ${
-          isDarkBg
-            ? "bg-white px-2.5 py-1.5 rounded-lg shadow-sm border border-slate-200"
-            : "bg-transparent"
+      <img
+        src={`${import.meta.env.BASE_URL}logo.png`}
+        alt="DM RUSH Official Logo"
+        className={`${height} w-auto object-contain max-w-full shrink-0 bg-transparent ${
+          isDarkBg ? "drop-shadow-[0_1px_2px_rgba(255,255,255,0.45)]" : ""
         }`}
-      >
-        <img
-          src={`${import.meta.env.BASE_URL}logo.png`}
-          alt="DM RUSH Official Logo"
-          className={`${height} w-auto object-contain max-w-full shrink-0`}
-          loading="eager"
-        />
-      </div>
+        loading="eager"
+      />
 
       {showTagline && (
         <div
