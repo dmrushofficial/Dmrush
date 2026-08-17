@@ -32,7 +32,7 @@ export function GrowthSystem() {
               ))}
             </div>
             <span className="text-2xl text-signal" aria-hidden="true">
-              ↓
+              ↑
             </span>
             <div className="flex flex-wrap items-center justify-center gap-3">
               {system.stages.map((stage, index) => (
@@ -42,7 +42,7 @@ export function GrowthSystem() {
                   </span>
                   {index < system.stages.length - 1 ? (
                     <span className="text-signal" aria-hidden="true">
-                      ↓
+                      ↑
                     </span>
                   ) : null}
                 </span>

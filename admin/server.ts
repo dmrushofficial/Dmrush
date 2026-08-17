@@ -952,7 +952,10 @@ const startServer = async () => {
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), "dist");
-    app.use("/admin", express.static(distPath, { index: false }));
+    app.get("/admin", (_req, res) => {
+      res.sendFile(path.join(distPath, "index.html"));
+    });
+    app.use("/admin", express.static(distPath, { index: false, redirect: false }));
     app.get(/^\/admin(?:\/.*)?$/, (req, res, next) => {
       if (req.path.startsWith("/admin/api")) return next();
       // Let static middleware handle real files; this is SPA fallback only

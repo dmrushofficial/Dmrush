@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { DesktopNav } from "@/components/layout/DesktopNav";
 import { Logo } from "@/components/layout/Logo";
 import { MobileNav } from "@/components/layout/MobileNav";
-import { ctas, siteConfig } from "@/lib/site";
+import { ctas } from "@/lib/site";
 
 export function Header() {
   return (
@@ -12,14 +12,6 @@ export function Header() {
         <Logo />
         <DesktopNav className="hidden xl:flex xl:justify-self-center" />
         <div className="hidden items-center gap-4 xl:flex xl:justify-self-end">
-          <a
-            href={siteConfig.whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm font-semibold text-ink hover:text-accent"
-          >
-            WhatsApp
-          </a>
           <Button href={ctas.primary.href} variant="signal">
             {ctas.primary.label} →
           </Button>

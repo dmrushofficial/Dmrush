@@ -52,5 +52,17 @@ export const team: TeamMember[] = [
     expertise: "Marketing · Campaigns · Brand",
     bio: "Handles marketing work across campaigns, messaging, and channel execution.",
     photo: "/images/team/najaf-khan.png",
+    social: [
+      {
+        id: "instagram",
+        href: "https://www.instagram.com/najaf_khan286/",
+        label: "Najaf Khan on Instagram",
+      },
+      {
+        id: "facebook",
+        href: "https://www.facebook.com/najaf.khan123",
+        label: "Najaf Khan on Facebook",
+      },
+    ],
   },
 ];

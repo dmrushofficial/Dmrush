@@ -4,6 +4,8 @@ const adminOrigin =
   process.env.ADMIN_INTERNAL_URL ?? "http://127.0.0.1:3005";
 
 const nextConfig: NextConfig = {
+  // Admin is mounted at /admin/ on the Node service; avoid /admin ↔ /admin/ redirect loops.
+  skipTrailingSlashRedirect: true,
   async redirects() {
     return [
       {
@@ -17,7 +19,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/admin",
-        destination: `${adminOrigin}/admin`,
+        destination: `${adminOrigin}/admin/`,
       },
       {
         source: "/admin/:path*",

@@ -16,7 +16,7 @@ export function CtaSection({
   description = "Book a strategy call to talk through search, web, and growth.",
   primaryLabel = ctas.primary.label,
   tone = "default",
-  align = "start",
+  align = "center",
 }: CtaSectionProps) {
   const isDark = tone === "dark";
   const isCentered = align === "center";
@@ -59,7 +59,7 @@ export function CtaSection({
         >
           <Button
             href={ctas.primary.href}
-            variant={isDark ? "inverse" : "primary"}
+            variant={isDark ? "inverse" : "signal"}
             size={isCentered ? "lg" : "md"}
           >
             {primaryLabel}

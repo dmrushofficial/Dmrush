@@ -92,9 +92,13 @@ export function Footer() {
         <p>
           © {year} {siteConfig.name}. All rights reserved.
         </p>
-        <div className="flex gap-6">
-          <span>Privacy Policy</span>
-          <span>Terms of Service</span>
+        <div className="flex flex-wrap gap-6">
+          <Link href="/privacy" className="hover:text-accent">
+            Privacy Policy
+          </Link>
+          <Link href="/terms" className="hover:text-accent">
+            Terms of Service
+          </Link>
         </div>
       </Container>
     </footer>
