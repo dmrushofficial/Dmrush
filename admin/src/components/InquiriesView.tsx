@@ -344,7 +344,7 @@ export const InquiriesView: React.FC = () => {
                   required
                   value={leadName}
                   onChange={(e) => setLeadName(e.target.value)}
-                  placeholder="e.g. Usman Ghani"
+                  placeholder="Full name"
                   className="w-full px-3 py-2 border border-slate-200 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
@@ -368,7 +368,7 @@ export const InquiriesView: React.FC = () => {
                     type="email"
                     value={leadEmail}
                     onChange={(e) => setLeadEmail(e.target.value)}
-                    placeholder="client@example.com"
+                    placeholder="Email (optional)"
                     className="w-full px-3 py-2 border border-slate-200 rounded focus:outline-none"
                   />
                 </div>

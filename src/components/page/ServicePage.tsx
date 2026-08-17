@@ -15,12 +15,12 @@ const placeholderFaqs = [
   {
     question: "Who is this service for?",
     answer:
-      "Businesses that need clearer search visibility, stronger websites, or more accountable paid growth. Full service details will be expanded in a later content phase.",
+      "Businesses that need clearer search visibility, stronger websites, or more accountable paid growth.",
   },
   {
     question: "What happens after we talk?",
     answer:
-      "We review your current visibility, website, and opportunities, then outline priorities. Engagement details will be confirmed during intake.",
+      "We review your current visibility, website, and opportunities, then outline priorities. Engagement details are confirmed during intake.",
   },
 ];
 

@@ -2,7 +2,7 @@ import React from "react";
 import { DMRushLogo } from "./DMRushLogo.js";
 import { 
   LayoutDashboard, Users, GraduationCap, BookOpen, MessageSquare, CreditCard, 
-  FileText, ShieldCheck, Settings as SettingsIcon, LogOut, RefreshCw, UserCheck
+  FileText, ShieldCheck, Settings as SettingsIcon, LogOut
 } from "lucide-react";
 import { useApp } from "../context/AppContext.js";
 import { UserRole } from "../types.js";
@@ -22,7 +22,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   setMobileOpen,
   onLogout,
 }) => {
-  const { currentUser, switchUserRole, resetDatabase, logout } = useApp();
+  const { currentUser, logout } = useApp();
 
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, roles: [UserRole.Admin, UserRole.Accountant] },
@@ -39,29 +39,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const handleNav = (tabId: string) => {
     setActiveTab(tabId);
     setMobileOpen(false);
-  };
-
-  const toggleUserRole = () => {
-    if (!currentUser) return;
-    const nextRole = currentUser.role === UserRole.Admin ? UserRole.Accountant : UserRole.Admin;
-    void switchUserRole(nextRole);
-    // Auto-navigate to dashboard if swapped to a restricted view
-    if (
-      nextRole === UserRole.Accountant &&
-      (activeTab === "settings" || activeTab === "logs" || activeTab === "teachers")
-    ) {
-      setActiveTab("dashboard");
-    }
-  };
-
-  const handleSystemReset = async () => {
-    if (window.confirm("CRITICAL WARNING: Are you sure you want to reset the entire database to original factory state? All custom students, payments and configurations will be permanently deleted.")) {
-      const ok = await resetDatabase();
-      if (ok) {
-        alert("Database successfully restored to original high-fidelity default values!");
-        setActiveTab("dashboard");
-      }
-    }
   };
 
   return (
@@ -116,7 +93,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <div className="overflow-hidden">
             <p className="text-sm font-semibold truncate text-white">{currentUser?.name || "User"}</p>
             <p className="text-xs text-[#8a9488] truncate font-mono">
-              {currentUser?.email || "admin@dmrush.com"}
+              {currentUser?.email || ""}
             </p>
           </div>
         </div>
@@ -133,31 +110,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <LogOut className="w-3.5 h-3.5 text-red-400" />
           <span>Sign Out of Portal</span>
         </button>
-
-        {/* Admin-only controls: Log in as Accountant & Factory Reset */}
-        {currentUser?.role === UserRole.Admin && (
-          <>
-            {/* Role Swapper Simulator */}
-            <button
-              id="btn-simulate-role-swap"
-              onClick={toggleUserRole}
-              className="w-full flex items-center justify-center space-x-2 py-1.5 px-3 bg-[#1a3324]/50 hover:bg-[#1a3324] rounded-lg text-[11px] font-semibold text-[#c5cebf] transition-colors border border-[#244530] cursor-pointer"
-            >
-              <UserCheck className="w-3.5 h-3.5 text-[#84cc16]" />
-              <span>Log in as Accountant</span>
-            </button>
-
-            {/* Demo Factory Reset Trigger */}
-            <button
-              id="btn-factory-reset"
-              onClick={handleSystemReset}
-              className="w-full flex items-center justify-center space-x-2 py-1.5 px-3 bg-red-950/20 hover:bg-red-950/40 border border-red-900/40 rounded-lg text-[10px] font-mono text-red-400 transition-colors cursor-pointer"
-            >
-              <RefreshCw className="w-3 h-3 text-red-500" />
-              <span>Factory Reset Data</span>
-            </button>
-          </>
-        )}
       </div>
     </aside>
   );

@@ -71,7 +71,7 @@ export const LoginView: React.FC = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="email@dmrush.com"
+                placeholder="Email address"
                 className="w-full pl-10 pr-4 py-2 bg-[#0d1510] border border-[#244530] text-white rounded-lg text-xs font-medium focus:outline-none focus:border-[#84cc16] transition-colors placeholder:text-slate-600"
               />
             </div>
@@ -111,22 +111,6 @@ export const LoginView: React.FC = () => {
             )}
           </button>
         </form>
-
-        {/* Authorized Workspace Accounts Information Panel */}
-        <div className="pt-6 border-t border-[#244530] space-y-2.5">
-          <p className="text-[10px] font-bold text-center text-slate-500 uppercase tracking-wider font-mono">Authorized Accounts Reference</p>
-          <div className="p-3.5 bg-[#0d1510]/80 border border-[#244530] rounded-xl space-y-2 text-xs">
-            <div className="flex items-center justify-between text-slate-400">
-              <span className="font-semibold text-[#84cc16]">Admin Supervisor</span>
-              <span className="font-mono text-[11px] text-slate-300 select-all">admin@dmrush.com</span>
-            </div>
-            <div className="flex items-center justify-between text-slate-400">
-              <span className="font-semibold text-[#b5d49a]">Accountant Desk</span>
-              <span className="font-mono text-[11px] text-slate-300 select-all">accountant@dmrush.com</span>
-            </div>
-          </div>
-        </div>
-
       </div>
 
       <p className="text-[10px] text-slate-600 mt-6 font-mono">

@@ -1,8 +1,6 @@
 import {
   BatchStatus,
   CourseStatus,
-  LeadSource,
-  LeadStatus,
   UserRole,
   type ActivityLog,
   type Batch,
@@ -41,16 +39,9 @@ export const INITIAL_DATABASE = {
     { id: "B-108", courseId: "C-108", name: "AIWEB-TT-1630", startDate: "2026-08-01", endDate: "2026-09-01", capacity: 20, status: BatchStatus.Active },
   ] as Batch[],
   students: [] as Student[],
-  inquiries: [
-    { id: "L-101", name: "Usman Ghani", phone: "0300-8889991", email: "usman.g@example.com", interestedCourseId: "C-101", source: LeadSource.Facebook, notes: "Inquired about full stack batch installments. Follow up scheduled.", followUpDate: "2026-07-22", status: LeadStatus.Interested, createdAt: "2026-07-15T10:30:00Z" },
-    { id: "L-102", name: "Sana Malik", phone: "0312-3334442", email: "sana.m@example.com", interestedCourseId: "C-102", source: LeadSource.WalkIn, notes: "Visited campus physically. Requested a tour and layout plan.", followUpDate: "2026-07-23", status: LeadStatus.FollowUp, createdAt: "2026-07-18T14:15:00Z" },
-    { id: "L-103", name: "Asad Mahmood", phone: "0321-7778883", email: "asad.m@example.com", interestedCourseId: "C-103", source: LeadSource.Website, notes: "Submitted online query form for iOS/Android app course.", followUpDate: "2026-07-24", status: LeadStatus.New, createdAt: "2026-07-20T08:00:00Z" },
-    { id: "L-104", name: "Zoya Butt", phone: "0333-1112224", email: "zoya@example.com", interestedCourseId: "C-104", source: LeadSource.Instagram, notes: "Shared digital marketing brochure on whatsapp.", followUpDate: "2026-07-19", status: LeadStatus.Contacted, createdAt: "2026-07-10T12:00:00Z" },
-  ] as Inquiry[],
+  inquiries: [] as Inquiry[],
   payments: [] as Payment[],
-  logs: [
-    { id: "LOG-1", user: "Admin User", role: UserRole.Admin, action: "System Initialized", details: "Database booted with courses, batches, and instructors.", date: "2026-07-21", time: "01:00 AM", ipAddress: "127.0.0.1" },
-  ] as ActivityLog[],
+  logs: [] as ActivityLog[],
   settings: {
     instituteName: "DM Rush Institute",
     logoUrl: "",

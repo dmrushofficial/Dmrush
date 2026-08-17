@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { services } from "@/content/services";
 import { siteConfig } from "@/lib/site";
@@ -9,11 +8,24 @@ const fieldClassName =
   "mt-2 w-full rounded-xl border border-line bg-surface px-3.5 py-3 text-sm text-ink outline-none transition-colors focus:border-accent";
 
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
-
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const lines = [
+      `Name: ${String(data.get("name") || "").trim()}`,
+      `Business: ${String(data.get("business") || "").trim()}`,
+      `Email: ${String(data.get("email") || "").trim()}`,
+      `Phone: ${String(data.get("phone") || "").trim()}`,
+      `Service area: ${String(data.get("serviceArea") || "").trim()}`,
+      `Interest: ${String(data.get("interest") || "").trim()}`,
+      `Message: ${String(data.get("message") || "").trim()}`,
+    ].filter((line) => !line.endsWith(": "));
+    window.open(
+      `${siteConfig.whatsappUrl}?text=${encodeURIComponent(lines.join("\n"))}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
   }
 
   return (
@@ -120,15 +132,9 @@ export function ContactForm() {
       </div>
       <div className="mt-8">
         <Button type="submit" variant="signal" size="lg">
-          Send message →
+          Send on WhatsApp →
         </Button>
       </div>
-      {submitted ? (
-        <p className="mt-4 text-sm leading-6 text-muted" role="status">
-          Thanks — this form is not connected to a backend yet. Meanwhile WhatsApp{" "}
-          {siteConfig.phoneDisplay} or email {siteConfig.email}.
-        </p>
-      ) : null}
     </form>
   );
 }

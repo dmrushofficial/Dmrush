@@ -600,7 +600,7 @@ export const StudentsView: React.FC<StudentsViewProps> = ({
                     required
                     value={formEmail}
                     onChange={(e) => setFormEmail(e.target.value)}
-                    placeholder="student@example.com"
+                    placeholder="student@email.com"
                     className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
                   />
                 </div>

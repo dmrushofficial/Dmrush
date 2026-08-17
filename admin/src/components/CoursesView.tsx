@@ -399,7 +399,7 @@ export const CoursesView: React.FC = () => {
                   required
                   value={courseName}
                   onChange={(e) => setCourseName(e.target.value)}
-                  placeholder="e.g. Graphic Designing & Motion Arts"
+                  placeholder="e.g. Course name"
                   className="w-full px-3 py-2 border border-slate-200 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>

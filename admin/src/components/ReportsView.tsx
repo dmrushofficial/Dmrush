@@ -20,8 +20,9 @@ export const ReportsView: React.FC = () => {
   const [selectedReport, setSelectedReport] = useState<ReportType>("admissions");
   
   // Custom date parameters
-  const [startDate, setStartDate] = useState<string>("2026-01-01");
-  const [endDate, setEndDate] = useState<string>("2026-07-21");
+  const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Karachi" });
+  const [startDate, setStartDate] = useState<string>(`${today.slice(0, 4)}-01-01`);
+  const [endDate, setEndDate] = useState<string>(today);
 
   // Filter helpers
   const filterByDate = (dateStr: string) => {

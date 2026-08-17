@@ -486,10 +486,10 @@ _For queries, call: ${instPhone}_`;
                     "{settings?.receiptNote || "Fees once paid are non-refundable & non-transferable."}"
                   </p>
                   
-                  {/* Mock Barcode placeholder */}
                   <div className="space-y-1 py-1 font-mono">
-                    <div className="text-[14px] tracking-wider text-slate-400 select-none">||||| | | |||| || ||| || |||</div>
-                    <div className="text-[7px] text-slate-400 uppercase">DM Rush Security Audit Verified</div>
+                    <div className="text-[7px] text-slate-400 uppercase tracking-widest">
+                      Receipt {selectedReceipt.id}
+                    </div>
                   </div>
                 </div>
 

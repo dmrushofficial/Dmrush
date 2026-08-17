@@ -11,7 +11,7 @@ export const contactPage = {
   },
   form: {
     title: "Send a message",
-    body: "Use this form for a strategy call or a free website and SEO audit. Submissions will be routed once intake is connected.",
+    body: "Use this form for a strategy call or a free website and SEO audit.",
   },
   nextSteps: {
     eyebrow: "What happens next",

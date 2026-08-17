@@ -17,9 +17,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 }) => {
   const { students, courses, batches, payments, inquiries, logs } = useApp();
 
-  // Get current date string for calculations matching user timestamp 2026-07-21
-  const todayStr = "2026-07-21";
-  const currentMonthPrefix = "2026-07";
+  const todayStr = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Karachi" });
+  const currentMonthPrefix = todayStr.slice(0, 7);
 
   // 1. Calculations for KPIs
   const totalStudents = students.length;

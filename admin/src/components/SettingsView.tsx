@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { 
-  Settings, Building, FileText, Users, ShieldAlert, History, Save, RefreshCw, Trash2, 
-  CheckCircle, Database, AlertCircle, Key, Lock, Globe
+  Building, FileText, Users, History, Save, CheckCircle, Database, AlertCircle, Key, Lock, Globe
 } from "lucide-react";
 import { useApp } from "../context/AppContext.js";
 import { UserRole } from "../types.js";
@@ -12,7 +11,7 @@ interface SettingsViewProps {
 
 export const SettingsView: React.FC<SettingsViewProps> = ({ defaultTab = "profile" }) => {
   const { 
-    settings, updateSettings, logs, currentUser, resetDatabase, users, updateUserCredentials 
+    settings, updateSettings, logs, currentUser, users, updateUserCredentials 
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<"profile" | "receipt" | "users" | "logs">(defaultTab);
@@ -55,26 +54,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ defaultTab = "profil
       alert("Receipt customization parameters saved.");
     } else {
       alert("Database rejected receipt modifications.");
-    }
-  };
-
-  // Trigger Database Factory Reset
-  const handleFactoryReset = async () => {
-    if (currentUser?.role !== UserRole.Admin) {
-      alert("RESTRICTED: Only administrators can authorize a factory ledger reset.");
-      return;
-    }
-    const doubleConfirm = window.confirm(
-      "CRITICAL DIAGNOSTIC WARNING:\nThis will permanently purge all custom enrollments, course modifications, CRM leads and payment receipts, reverting the database to pristine factory demo records.\n\nDo you want to proceed?"
-    );
-    if (doubleConfirm) {
-      const ok = await resetDatabase();
-      if (ok) {
-        alert("DATABASE FACTORY RESET COMPLETED.\nRebooting application state providers...");
-        window.location.reload();
-      } else {
-        alert("DB server refused factory wipe command.");
-      }
     }
   };
 
@@ -322,27 +301,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ defaultTab = "profil
                   );
                 })}
               </div>
-
-              {/* Security diagnostic box */}
-              {currentUser.role === UserRole.Admin && (
-                <div className="p-4 bg-red-50 border border-red-100 rounded-xl space-y-3 pt-4 mt-6">
-                  <div className="flex items-center space-x-2 text-red-600">
-                    <ShieldAlert className="w-4 h-4 shrink-0" />
-                    <h4 className="text-xs font-bold uppercase tracking-wider font-mono">Administrative Diagnostics Zone</h4>
-                  </div>
-                  <p className="text-[10px] text-red-700 leading-relaxed font-sans font-medium">
-                    Resetting the system database permanently wipes all active enrollments, leads, payments, and receipt logs, returning the site to the original set of dummy records. This operation cannot be reversed.
-                  </p>
-                  <button
-                    onClick={handleFactoryReset}
-                    className="px-3.5 py-1.5 bg-red-600 hover:bg-red-500 text-white text-[10px] font-bold rounded flex items-center space-x-1 shadow-sm"
-                    id="btn-factory-reset-db"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                    <span>Revert to Factory Mock Data</span>
-                  </button>
-                </div>
-              )}
 
             </div>
           )}
