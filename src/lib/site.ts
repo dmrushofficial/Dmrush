@@ -6,7 +6,7 @@ export const siteConfig = {
   tagline: "SEO, web development, and digital growth for modern businesses.",
   description:
     "DMrush is a digital growth agency helping businesses get found, get chosen, and grow through SEO, web development, ecommerce, and paid acquisition.",
-  email: "support@dmrush.com",
+  email: "dmrushofficial@gmail.com",
   phone: "+923017786667",
   phoneDisplay: "+92 301 7786667",
   whatsappUrl: "https://wa.me/923017786667",
